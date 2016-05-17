@@ -12,6 +12,8 @@ class Person {
 	public $prefix;
 	public $lastname;
 
+	public $displayname;
+
 	public function ToString() {
 		return $this->firstname . ' ' . $this->prefix . ' ' . $this->lastname;
 	}
