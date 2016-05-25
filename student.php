@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // the output of all functions assume that the info goes to a 
 // database. No HTML formatting is done, so linebreaks <br>
@@ -9,13 +9,14 @@ class Student {
 		$this->StudentNumber = $sn;
 		$this->FirstName = $fn;
 		$this->Prefix = $pf;
-		$this->LastName = $ln; 
+		$this->LastName = $ln;
 		$this->Address = $add;
 		$this->PostalCode = $pc;
 		$this->City = $ct;
 		$this->Email = $em;
-	} 
+	}
 
+	// properties
 	public $Id;				// 47
 	public $StudentNumber;	// 99012345
 	public $FirstName;		// David
