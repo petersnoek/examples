@@ -5,6 +5,7 @@
 // must be added to replace the PHP_EOL's 
 class Student {
 
+	// new Student(.. , .. , .. , .. , .. , .. , .. , ..);
 	public function __construct($sn, $fn, $pf, $ln, $add, $pc, $ct, $em) {
 		$this->StudentNumber = $sn;
 		$this->FirstName = $fn;

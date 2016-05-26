@@ -13,6 +13,7 @@ class StudentCollection {
     // constructor; is called when we call "new StudentCollection"
     public function __construct() {
         $this->students = [];       // make sure Students is empty array
+
     }
 
     public function Add($student) {
@@ -39,6 +40,17 @@ class StudentCollection {
         $out .= '</ul>';
 
         return $out;
+    }
+
+    public function GetStudentsWithFirstName($searchtext) {
+        $found = [];  // nothing found, so return nothing (null)
+
+        // get 1 student from the list; compare firstname; if match then store reference to the student in $found
+        foreach ($this->students as $student) {
+            if ( $student->FirstName == $searchtext ) array_push($found, $student);
+        }
+
+        return $found;
     }
 
     public function ToJson() {
