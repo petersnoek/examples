@@ -8,20 +8,8 @@
 require_once 'rssreader.class.php';
 
 $reader = new RssReader('http://www.nu.nl/rss/Algemeen');
+$items = $reader->GetAllItems();
 
-$curl = curl_init();
-curl_setopt_array($curl, Array(
-    CURLOPT_URL            => 'http://www.nu.nl/rss/Algemeen',
-    CURLOPT_USERAGENT      => 'spider',
-    CURLOPT_TIMEOUT        => 120,
-    CURLOPT_CONNECTTIMEOUT => 30,
-    CURLOPT_RETURNTRANSFER => TRUE,
-    CURLOPT_ENCODING       => 'UTF-8'
-));
-$data = curl_exec($curl);
-curl_close($curl);
-$xml = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
-//die('<pre>' . print_r($xml], TRUE) . '</pre>');
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,14 +19,10 @@ $xml = simplexml_load_string($data, 'SimpleXMLElement', LIBXML_NOCDATA);
 </head>
 <body>
 
-<?php foreach ($xml->channel->item as $item) {
-    $creator = $item->children('dc', TRUE);
-    echo '<h2>' . $item->title . '</h2>';
-    echo '<p>Created: ' . $item->pubDate . '</p>';
-    echo '<p>Author: ' . $creator . '</p>';
-    echo '<p>' . $item->description . '</p>';
-    echo '<p><a href="' . $item->link . '">Read more: ' . $item->title . '</a></p>';
-}
+<?php
+    foreach ($items as $item) {
+        echo $item->ToHTMLString();
+    }
 ?>
 
 </body>
