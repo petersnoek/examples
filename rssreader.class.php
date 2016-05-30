@@ -41,6 +41,7 @@ class RssReader {
     // reads all items (step 1) and creates RssItem objects (step 2)
     function GetAllItems() {
         $curl = curl_init();
+        // curl needs some options to work properly.
         curl_setopt_array($curl, Array(
             CURLOPT_URL            => 'http://www.nu.nl/rss/Algemeen',
             CURLOPT_USERAGENT      => 'spider',
@@ -49,7 +50,9 @@ class RssReader {
             CURLOPT_RETURNTRANSFER => TRUE,
             CURLOPT_ENCODING       => 'UTF-8'
         ));
+        // get the items
         $data = curl_exec($curl);
+        // we don't need a connection to stay open. close it.
         curl_close($curl);
 
         // step 2
