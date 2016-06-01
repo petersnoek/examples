@@ -61,4 +61,41 @@ class StudentCollection {
         return file_put_contents($filename, $this->ToJson() );
     }
 
+    public function CreateStudentsFromJsonFile($filename){
+        // read file
+        // TODO: add errorhandling if file does not exist or is not readable
+        $filecontents = file_get_contents($filename);
+
+        $json = json_decode($filecontents);
+
+        foreach($json as $j) {
+            $s = new Student(
+                $j->studentnumber,
+                $j->firstname,
+                $j->prefix,
+                $j->lastname,
+                $j->address,
+                $j->postalcode,
+                $j->city,
+                $j->email);
+            array_push($this->students, $s);
+        }
+    }
+
+    public function RemoveByFirstname($seachfirstname){
+
+        // loop over all students and take both key (0,1,2) and value(=student)
+        foreach($this->students as $elementKey => $student ) {
+
+            // for the current student, loop over all its properties
+            foreach($student as $propertyname => $propertyvalue) {
+
+                if($propertyname == 'FirstName' && $propertyvalue == $seachfirstname){
+                    //delete this particular object from the $array
+                    unset($this->students[$elementKey]);
+                }
+            }
+        }
+    }
+
 }
