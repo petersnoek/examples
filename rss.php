@@ -6,6 +6,6 @@
 
 
 // stap 2: haal de hele RSS feed binnen in 1 variabele
-include 'functions.php';
+include 'rssfunctions.php';
 $feed = getFeed('http://www.nu.nl/rss/');
 echo $feed;
